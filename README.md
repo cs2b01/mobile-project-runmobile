@@ -8,7 +8,7 @@ Se desarrolla la versión android del proyecto RUN.
 - Osman Vilchez   25%  
 - Raul Mosquera   25%  
 
-https://raw.githubusercontent.com/cs2b01/mobile-project-runmobile/master/Run.PNG
+![github-small](https://raw.githubusercontent.com/cs2b01/mobile-project-runmobile/master/Run.PNG)
 
 
   
