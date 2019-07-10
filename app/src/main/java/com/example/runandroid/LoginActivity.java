@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
-        String type = "student";
+        String type = "alumno";
         // 2. Creating a message from user input data
         Map<String, String> message = new HashMap<>();
         message.put("username", username);
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         // 4. Sending json message to Server
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://10.0.2.2:8080/authenticate",
+                "http://3.15.24.95:8080/authenticate",
                 //    "http://127.0.0.1:8080/authenticate",
                 jsonMessage,
                 new Response.Listener<JSONObject>() {
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
-        String type = "teacher";
+        String type = "profesor";
         // 2. Creating a message from user input data
         Map<String, String> message = new HashMap<>();
         message.put("username", username);
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         // 4. Sending json message to Server
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://10.0.2.2:8080/authenticate",
+                "http://3.15.24.95:8080/authenticate",
                 //    "http://127.0.0.1:8080/authenticate",
                 jsonMessage,
                 new Response.Listener<JSONObject>() {

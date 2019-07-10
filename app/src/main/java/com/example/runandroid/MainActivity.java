@@ -35,21 +35,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ChatFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_chat);
+            navigationView.setCheckedItem(R.id.nav_course);
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_chat:
+            /*case R.id.nav_chat:
                 getSupportFragmentManager().beginTransaction().replace(
                   R.id.fragment_container, new ChatFragment()).commit();
-                break;
+                break;*/
 
             case R.id.nav_course:
+                CourseFragment cursoFrag = new CourseFragment();
+                Bundle args = new Bundle();
+                args.putString("user_id", getIntent().getExtras().get("user_id").toString());
+
+                cursoFrag.setArguments(args);
+
                 getSupportFragmentManager().beginTransaction().replace(
-                        R.id.fragment_container, new CourseFragment()).commit();
+                        R.id.fragment_container, cursoFrag).commit();
                 break;
 
             case R.id.nav_faq:

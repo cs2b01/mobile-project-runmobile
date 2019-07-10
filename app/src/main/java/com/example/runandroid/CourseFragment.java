@@ -29,6 +29,7 @@ public class CourseFragment extends Fragment {
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,9 +41,13 @@ public class CourseFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()
                                         ));
 
-        String url = "http://10.0.2.2:8080/cursos/<curso_id>";
+        Bundle args = getArguments();
 
-        url = url.replace("<curso_id>", "1");
+        //String url = "http://10.0.2.2:8080/cursos/<curso_id>";
+        String url = "http://3.15.24.95:8080/cursos/<curso_id>";
+        final String id_user = args.getString("user_id", "");
+
+        url = url.replace("<curso_id>", id_user);
 
         //RequestQueue queue = Volley.newRequestQueue(this);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
@@ -57,8 +62,8 @@ public class CourseFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray data = response.getJSONArray("data");
-                            mAdapter = new CourseAdapter(data, getActivity(), "1");
+                            JSONArray data = response.getJSONArray("cursos");
+                            mAdapter = new CourseAdapter(data, getActivity(), id_user);
                             mRecyclerView.setAdapter(mAdapter);
 
                         }catch (JSONException e) {
