@@ -64,6 +64,7 @@ public class CourseFragment extends Fragment {
                         try {
                             JSONArray data = response.getJSONArray("cursos");
                             mAdapter = new CourseAdapter(data, getActivity(), id_user);
+
                             mRecyclerView.setAdapter(mAdapter);
 
                         }catch (JSONException e) {

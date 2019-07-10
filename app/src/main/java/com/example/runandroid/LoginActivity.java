@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                             else {
                                 showMessage("Wrong username or password");
                             }
-                            showMessage(response.toString());
+                            //showMessage(response.toString());
                         }catch (Exception e) {
                             e.printStackTrace();
                             showMessage(e.getMessage());

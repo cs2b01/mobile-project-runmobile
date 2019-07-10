@@ -22,9 +22,8 @@ public class FaqFragment extends Fragment {
         TextView tv = view.findViewById(R.id.simpleTv);
 
         Spanned html = Html.fromHtml(
-                "TextView first line... <br />" +
-                        "<b>Bold Text</b> | <i>Italic Text</i> and <br/>" +
-                        "<u>Underlined text</u>"
+                "Preguntas frecuentes<br />" +
+                        "<b>Pregunta 1</b>"
         );
 
         tv.setText(html);
