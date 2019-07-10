@@ -2,14 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     android:background="@android:color/white">
 
     <TextView
+        android:id="@+id/title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main Fragment"
+        android:text="¿Quienes somos?"
         android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/body"/>
 
+    <TextView
+        android:id="@+id/body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\nCode en mi cole nace dentro del capítulo estudiantil Engineers Without Border UTEC(Ingenieros sin Fronteras) como un programa corto de voluntariado a favor de la recuperación de valores en colegios estatales dentro de Barranco. Luego de un tiempo evoluciona a RUN y cambia el modelo de voluntariado para ser sostenible. "
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
