@@ -42,7 +42,8 @@ public class CourseFragment extends Fragment {
 
         String url = "http://10.0.2.2:8080/cursos/<curso_id>";
 
-        url = url.replace("<curso_id>", "1");
+        //Al llamar esta ruta, obtenemos los cursos del usuario
+        url = url.replace("<curso_id>", getIntent().getExtras().get("user_id").toString());
 
         //RequestQueue queue = Volley.newRequestQueue(this);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
@@ -57,7 +58,8 @@ public class CourseFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray data = response.getJSONArray("data");
+                            JSONArray data = response.getJSONArray("cursos");
+                            //falta cambiar algo aca
                             mAdapter = new CourseAdapter(data, getActivity(), "1");
                             mRecyclerView.setAdapter(mAdapter);
 
