@@ -37,18 +37,18 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    public void onBtnLoginClicked(View view) {
+    public void LoginStudentClicked(View view) {
         // 1. Getting username and password inputs from view
         EditText txtUsername = (EditText) findViewById(R.id.txtUsername);
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
-
+        String type = "student";
         // 2. Creating a message from user input data
         Map<String, String> message = new HashMap<>();
         message.put("username", username);
         message.put("password", password);
-
+        message.put("type", type);
         // 3. Converting the message object to JSON string (jsonify)
         JSONObject jsonMessage = new JSONObject(message);
 
@@ -101,4 +101,68 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
     }
 
+
+    public void LoginTeacherClicked(View view) {
+        // 1. Getting username and password inputs from view
+        EditText txtUsername = (EditText) findViewById(R.id.txtUsername);
+        EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
+        String username = txtUsername.getText().toString();
+        String password = txtPassword.getText().toString();
+        String type = "teacher";
+        // 2. Creating a message from user input data
+        Map<String, String> message = new HashMap<>();
+        message.put("username", username);
+        message.put("password", password);
+        message.put("type", type);
+        // 3. Converting the message object to JSON string (jsonify)
+        JSONObject jsonMessage = new JSONObject(message);
+
+        // 4. Sending json message to Server
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                "http://10.0.2.2:8080/authenticate",
+                //    "http://127.0.0.1:8080/authenticate",
+                jsonMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //TODO
+                        try {
+                            String message = response.getString("message");
+                            if(message.equals("Authorized")) {
+                                showMessage("Authenticated");
+
+                                //Intent intent = new Intent(getActivity(),ContactsActivity.class);
+                                Intent intent = new Intent(getActivity(),MainActivity.class);
+                                intent.putExtra("user_id", response.getInt("user_id"));
+                                intent.putExtra("username", response.getString("username"));
+                                startActivity(intent);
+                            }
+                            else {
+                                showMessage("Wrong username or password");
+                            }
+                            showMessage(response.toString());
+                        }catch (Exception e) {
+                            e.printStackTrace();
+                            showMessage(e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        if( error instanceof  AuthFailureError ){
+                            showMessage("Unauthorized");
+                        }
+                        else {
+                            showMessage(error.getMessage());
+                        }
+                    }
+                }
+        );
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+    }
 }
