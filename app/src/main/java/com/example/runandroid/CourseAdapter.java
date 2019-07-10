@@ -47,23 +47,27 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.ViewHolder holder, int position) {
         try {
-        JSONObject element = elements.getJSONObject(position);
+        final JSONObject element = elements.getJSONObject(position);
 
             String name = element.getString("nombre");
+            final String id = element.getString("id");
+            final String descripcion = element.getString("descripcion");
+            final String horario = element.getString("horario");
 
             holder.first_line.setText(name);
 
-            /*holder.container.setOnClickListener(new View.OnClickListener(){
+            holder.container.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Intent goToMessage = new Intent(context,MessageActivity.class);
+                    Intent goToMessage = new Intent(context,CourseActivity.class);
 
-                    goToMessage.putExtra("user_from_id",userFromId);
-                    goToMessage.putExtra("user_to_id",id);
-                    goToMessage.putExtra("username", username);
+                    goToMessage.putExtra("course_id",userFromId);
+                    goToMessage.putExtra("descripcion", descripcion);
+                    goToMessage.putExtra("horario", horario);
+
                     context.startActivity(goToMessage);
                 }
-            });*/
+            });
         } catch (JSONException e) {
            e.printStackTrace();
         }
